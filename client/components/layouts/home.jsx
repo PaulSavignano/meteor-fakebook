@@ -1,6 +1,6 @@
 Homelayout = React.createClass({
   render() {
-    return (
+    return(
       <div>
         <Header/>
         <div className="container">

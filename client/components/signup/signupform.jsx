@@ -43,14 +43,14 @@ Signupform = React.createClass({
           <div className="col-sm-9">
             <div className="row">
               <div className="col-sm-6 form-group">
-                <input name="first_nane" placeholder="First Name" type="text" ref="first_name" className="form-control"/>
+                <input name="first_name" placeholder="First Name" type="text" ref="first_name" className="form-control"/>
               </div>
               <div className="col-sm-6 form-group">
                 <input placeholder="Last Name" type="text" ref="last_name" name="last_name" className="form-control"/>
               </div>
             </div>
             <div className="form-group">
-              <input placeholder=" Email or mobile number" type="text" ref="email" className="form-control"/>
+              <input placeholder="Email or mobile number" type="text" ref="email" className="form-control"/>
             </div>
             <div className="form-group">
               <input placeholder="password" type="password" ref="password" className="form-control"/>
