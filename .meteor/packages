@@ -26,3 +26,5 @@ twbs:bootstrap
 kadira:flow-router
 kadira:react-layout
 fortawesome:fontawesome
+cfs:standard-packages
+cfs:filesystem

@@ -17,7 +17,7 @@ Post = React.createClass({
             </div>
             <div className="pull-left meta">
               <div className="title h5">
-                <b>Paul Savignano</b>
+                <b>Paul Savignano</b>&nbsp;
                 made a post.
               </div>
               <h6 className="text-muted time">An hour ago</h6>
@@ -34,7 +34,7 @@ Post = React.createClass({
           <div className="actions">
             <a href="" className="btn btn-default stat-item">
               <i className="fa fa-thumbs-up icon"></i>
-            </a>%nbsp;
+            </a>&nbsp;
             10 Likes
           </div>
           <div className="post-footer">
