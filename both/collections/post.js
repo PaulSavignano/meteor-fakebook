@@ -7,6 +7,6 @@ Posts.allow({
     return true;
   },
   remove: function() {
-    return true;
+    return doc && doc.owner._id === userId;
   }
 });

@@ -26,5 +26,12 @@ twbs:bootstrap
 kadira:flow-router
 kadira:react-layout
 fortawesome:fontawesome
+random
+meteorhacks:npm
+cosmos:browserify
 cfs:standard-packages
 cfs:filesystem
+momentjs:moment
+
+
+npm-container

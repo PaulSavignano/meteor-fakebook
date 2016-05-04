@@ -77,6 +77,6 @@ Meteor.methods({
   },
   'likePost': function(userid, postid) {
     console.log(userid, postid);
-    Posts.update(postid, {$addToSet: {likes: this.userId}});
+    Posts.update(postid, {$addToSet: {likes: this.userid}});
   }
 });

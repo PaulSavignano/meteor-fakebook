@@ -1,7 +1,5 @@
-Images = new FS.Collection("images", {
-  stores: [new FS.Store.FileSystem("images", {path: "~/uploads"})]
-});
-Images.allow({
+DBMessage = new Mongo.Collection('message');
+DBMessage.allow({
   insert: function() {
     return true;
   },

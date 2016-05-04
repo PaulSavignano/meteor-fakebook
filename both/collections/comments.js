@@ -1,7 +1,5 @@
-Images = new FS.Collection("images", {
-  stores: [new FS.Store.FileSystem("images", {path: "~/uploads"})]
-});
-Images.allow({
+Comments = new Mongo.Collection('comments');
+Comments.allow({
   insert: function() {
     return true;
   },

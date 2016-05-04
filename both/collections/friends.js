@@ -1,7 +1,5 @@
-Images = new FS.Collection("images", {
-  stores: [new FS.Store.FileSystem("images", {path: "~/uploads"})]
-});
-Images.allow({
+DBFriends = new Mongo.Collection('friends');
+DBFriends.allow({
   insert: function() {
     return true;
   },

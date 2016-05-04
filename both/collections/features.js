@@ -1,7 +1,5 @@
-Images = new FS.Collection("images", {
-  stores: [new FS.Store.FileSystem("images", {path: "~/uploads"})]
-});
-Images.allow({
+DBFeature = new Mongo.Collection('feature');
+DBFeature.allow({
   insert: function() {
     return true;
   },
