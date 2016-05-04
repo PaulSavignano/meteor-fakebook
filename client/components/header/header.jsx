@@ -13,7 +13,6 @@ Header = React.createClass({
   },
   displayError(message) {
     this.setState({message: message, messageClass: 'alert alert-danger message'});
-
   },
   handleSubmit(e) {
     e.preventDefault();

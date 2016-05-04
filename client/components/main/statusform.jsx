@@ -1,4 +1,9 @@
 Statusform = React.createClass({
+  mixins: [ReactMeteorData],
+  getMeteorData() {
+    let data = {};
+    return data;
+  },
   getInitialState() {
     return {
       image: '',
@@ -7,23 +12,18 @@ Statusform = React.createClass({
   },
   resetFields() {
     ReactDOM.findDOMNode(this.refs.sharing).value = '';
-    ReactDOM.findDOMNode(this.refs.imageid).value = '';
-    ReactDOM.findDOMNode(this.refs.sharing).focus = '';
+    ReactDOM.findDOMNode(this.refs.sharing).focus();
   },
   submitForm(e) {
     e.preventDefault();
     var message = this.refs.sharing.value;
-    var imageid = this.refs.imageid.value;
-    if(imageid) {
-      var image = Images.findOne({_id: imageid});
-      var imageurl = image.url();
-    }
-    Meteor.call('Posts.insert', message, imageid, imageurl, function(err) {
-      if(eff) {
+    var imageurl = this.refs.imagepath.value;
+    Meteor.call('Posts.insert', message, imageurl, function(err) {
+      if(err) {
         console.log(err);
       }
     });
-    this.setState({image: '', filename: ''});
+    this.setState({filename: ''});
     this.resetFields();
   },
   uploadFile(e) {
@@ -31,9 +31,9 @@ Statusform = React.createClass({
     var that = this;
     FS.Utility.eachFile(e, function(file) {
       Images.insert(file, function(err, fileObj) {
-        that.setState({image: fileObj._id, filename: fileObj.data.blob.name});
-      })
-    })
+        that.setState({filename: fileObj.data.blob.name, imageurl: '/cfs/files/images/' + fileObj._id + '/' + fileObj.data.blob.name});
+      });
+    });
   },
   render() {
     return(
@@ -43,18 +43,30 @@ Statusform = React.createClass({
             Update Status
           </div>
           <form onSubmit={this.submitForm} className="form center-block">
-            <input type="hidden" ref="imageid" value={this.state.image}/>
+            <input type="hidden" ref="imagepath" value={this.state.imageurl}/>
             <div className="panel-body">
               <div className="form-group">
-                <textarea placeholder="What do you want to share?" ref="sharing" id="sharing" className="form-control input-lg">
+                <textarea
+                  ref="sharing"
+                  className="form-control input-lg"
+                  autofocus=""
+                  placeholder="What do you want to share?"
+                >
 
                 </textarea>
-                <h3>{this.state.filename || ''}</h3>
               </div>
               <div className="panel-footer">
                 <div>
                   <ul className="pull-left list-inline">
-                    <li><input onChange={this.uploadFile} ref="file" type="file" className="filepicker" id="file"/></li>
+                    <li>
+                      <input
+                        onChange={this.uploadFile}
+                        ref="file"
+                        className="filepicker"
+                        id="file"
+                        type="file"
+                      />
+                    </li>
                   </ul>
                   <button className="btn btn-primary btn-sm postbutton">Post</button>
                 </div>

@@ -6,10 +6,10 @@ Navbar = React.createClass({
     return data;
   },
   componentDidMount() {
-    var users = Meteor.users.find({}, {fields: {profile: 1}}).fetch();
+    var users = Meteor.users.find({}, {fields: {'profile': 1}}).fetch();
     var usernames = [];
-    user.map(function(user) {
-      username.push(user.profile.fullname);
+    users.map(function(user) {
+      usernames.push(user.profile.fullname);
     });
     $('#typeahead').typeahead({
       name: 'users',
