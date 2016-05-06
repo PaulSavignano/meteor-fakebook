@@ -1,3 +1,32 @@
+Meteor.startup(function() {
+  if (DBFeature.find().fetch().length === 0) {
+    var features = [
+      {
+        icon: "fa fa-image fa-2x",
+        bigtext: "See photos and updates",
+        littletext: "from friends in News Feed"
+      },
+      {
+        icon: "fa fa-share fa-2x",
+        bigtext: "Share what\'s new",
+        littletext: 'in your life on your Timeline'
+      },
+      {
+        icon: "fa fa-search fa-2x",
+        bigtext: "Find more",
+        littletext: 'of what you\'re looking for with Fakebook search'
+      }
+    ];
+    _.each(features, function(featureData) {
+      DBFeature.insert(featureData);
+    });
+  }
+  if (DBAds.find().fetch().length === 0) {
+    DBAds.insert({title: 'First Advertisement', text: 'This is on sale now.'});
+  }
+});
+
+
 Meteor.methods({
   'Posts.insert': function(message, imageurl) {
     var post = {
@@ -69,7 +98,7 @@ Meteor.methods({
   'confirmFriend': function(message) {
     console.log(message.to._id, message.fromuser);
     Meteor.users.update(message.to._id, {$addToSet: {'profile.friends': message.fromuser}});
-    Meteor.users.update(message.from._id, {$addToSet: {'profile.friends': message.to._id}});
+    Meteor.users.update(message.fromuser, {$addToSet: {'profile.friends': message.to._id}});
     DBMessage.remove(message._id);
   },
   'removeFriend': function(userid, friendid) {
